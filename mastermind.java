@@ -6,7 +6,10 @@ import java.awt.event.*;
 public class mastermind extends JFrame implements MouseListener
 {
 
+	code[] guessArray;
+	code[] responseArray;
 	
+	int turn = 0;
 
 	public static void main(String args[]) 
 	{
@@ -18,43 +21,63 @@ public class mastermind extends JFrame implements MouseListener
 		setSize(300, 600);
 		setTitle("Mastermind");
 		getContentPane().setBackground(Color.lightGray);
-		
+
 		addMouseListener(this);
 		setVisible(true);
+
+		//Initialize variables
+		guessArray = new code[10]();
+		responseArray = new code[(guessArray.length-1)]();
+		
+		guessArray[(guessArray.length-1)] = new code({'w','w','w','w'); // Genterate random code	
+
 	}
 
 	public void paint(Graphics g) {
+		super.paint(g);
+		Graphics2D g2d = (Graphics2D) g;
+		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+				RenderingHints.VALUE_ANTIALIAS_ON);
 
-		
+
+		for (int row = 0; row <= turn; row++) {
+			for(int i = 0; i < 4; i++) {		
+				g2d.setColor(returnColorForCharacter(guessArray[turn].getColorAtIndex(i)));	
+				g2d.fill(returnGuessEllipse(row,i));
+				g2d.setColor(returnForCharacter(responserArray[turn].getColorAtIndex(i)));	
+				g2d.fill(returnResponseEllipse(row,i));
+			}
+		}
+
+		for(int i = 0; i < 4; i++) {
+			g2d.setColor(returnColorForCharacter(guessArray[guessArray.length-1].getColorAtIndex(i)));	
+			g2d.fill(returnGuessEllipse((guessArray.length-1),i));
+		}
+
+		g2d.setColor(Color.red);	
+		g2d.fill(new Rectangle2D.Double(((4*60)+30,((guessArray.length-1)*60)+30,60,60));
+
+
 	}
 
-	//Overridden Methods from MouseListener Interface
-	//These methods are called automatically when corresponding mouse
-	//event occurs 
-	/////////////////////////////////////////////////
 	public void mousePressed(MouseEvent e) 
 	{
-	   
 	}
 	
 	public void mouseReleased(MouseEvent e)
 	{
-	    
 	}
 	
 	public void mouseEntered(MouseEvent e) 
 	{
-	   
 	}
 	
 	public void mouseExited(MouseEvent e) 
 	{
-	    
 	}
 	
 	public void mouseClicked(MouseEvent e) 
 	{
-		
 	}
 	
 	public Ellipse2D returnGuessEllipse(int turn, int column) {

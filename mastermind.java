@@ -97,16 +97,24 @@ public class mastermind extends JFrame implements MouseListener
 				System.out.println("GO");
 			}
 			else if (returnGuessEllipse((guessArray.length-1),0).contains(e.getX(), e.getY()) ) {
-				System.out.println("1st pressed");
+				char currentColor = guessArray[guessArray.length-1].getColorAtIndex(0);
+				char newColor = returnNextColor(currentColor);
+				guessArray[guessArray.length-1].setColorAtIndex(0,newColor);
 			}	
 			else if (returnGuessEllipse((guessArray.length-1),1).contains(e.getX(), e.getY()) ) {
-				System.out.println("2nd pressed");
+				char currentColor = guessArray[guessArray.length-1].getColorAtIndex(1);
+				char newColor = returnNextColor(currentColor);
+				guessArray[guessArray.length-1].setColorAtIndex(1,newColor);
 			}	
 			else if (returnGuessEllipse((guessArray.length-1),2).contains(e.getX(), e.getY()) ) {
-				System.out.println("3rd pressed");
+				char currentColor = guessArray[guessArray.length-1].getColorAtIndex(2);
+				char newColor = returnNextColor(currentColor);
+				guessArray[guessArray.length-1].setColorAtIndex(2,newColor);
 			}	
 			else if (returnGuessEllipse((guessArray.length-1),3).contains(e.getX(), e.getY()) ) {
-				System.out.println("4th pressed");
+				char currentColor = guessArray[guessArray.length-1].getColorAtIndex(3);
+				char newColor = returnNextColor(currentColor);
+				guessArray[guessArray.length-1].setColorAtIndex(3,newColor);
 			}	
 		}
 	}
@@ -155,4 +163,27 @@ public class mastermind extends JFrame implements MouseListener
 		}
 	}
 
+	public char returnNextColor(char c){
+		char [] col = new char[6];
+		col[0] = 'r';
+		col[1] = 'g';
+		col[2] = 'b';
+		col[3] = 'w';
+		col[4] = 'y';
+		col[5] = 'o';
+		
+		if(c == 'o'){
+			return col[0];
+		}
+		for(int i = 0; i < col.length-2; i++){
+			if(c == col[i]){
+				return col[i+1];
+			}
+		}
+		
+		return col[0];
+	}
+	
+	
+	
 }

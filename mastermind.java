@@ -84,8 +84,33 @@ public class mastermind extends JFrame implements MouseListener
 	
 	public void mouseClicked(MouseEvent e) 
 	{
+		if (e.getButton() == 1) {
+			Rectangle2D rect = new Rectangle2D.Double((4*60),(guessArray.length-1)*60,60,60);
+			if (rect.contains(e.getX(), e.getY())) {
+				//Enter button
+				//Check for turn
+				//Add guess to list
+				//Compare Guess
+				//Add response to list
+				//Repaint
+
+				System.out.println("GO");
+			}
+			else if (returnGuessEllipse((guessArray.length-1),0).contains(e.getX(), e.getY()) ) {
+				System.out.println("1st pressed");
+			}	
+			else if (returnGuessEllipse((guessArray.length-1),1).contains(e.getX(), e.getY()) ) {
+				System.out.println("2nd pressed");
+			}	
+			else if (returnGuessEllipse((guessArray.length-1),2).contains(e.getX(), e.getY()) ) {
+				System.out.println("3rd pressed");
+			}	
+			else if (returnGuessEllipse((guessArray.length-1),3).contains(e.getX(), e.getY()) ) {
+				System.out.println("4th pressed");
+			}	
+		}
 	}
-	
+
 	public Ellipse2D returnGuessEllipse(int turn, int column) {
 		return new Ellipse2D.Double(column*60,turn*60,50,50);	
 	}
@@ -105,7 +130,7 @@ public class mastermind extends JFrame implements MouseListener
 		}
 		return new Ellipse2D.Double(0,0,0,0);
 	}
-	
+
 	public Color returnColorForCharacter(char c){
 		if (c == 'r'){
 			return Color.red;
@@ -129,5 +154,5 @@ public class mastermind extends JFrame implements MouseListener
 			return Color.lightGray;
 		}
 	}
-	
+
 }

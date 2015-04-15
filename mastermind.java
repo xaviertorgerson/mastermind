@@ -115,7 +115,8 @@ public class mastermind extends JFrame implements MouseListener
 				char currentColor = guessArray[guessArray.length-1].getColorAtIndex(3);
 				char newColor = returnNextColor(currentColor);
 				guessArray[guessArray.length-1].setColorAtIndex(3,newColor);
-			}	
+			}
+			repaint();	
 		}
 	}
 
@@ -175,7 +176,7 @@ public class mastermind extends JFrame implements MouseListener
 		if(c == 'o'){
 			return col[0];
 		}
-		for(int i = 0; i < col.length-2; i++){
+		for(int i = 0; i < col.length-1; i++){
 			if(c == col[i]){
 				return col[i+1];
 			}

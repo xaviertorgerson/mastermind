@@ -1,28 +1,53 @@
+import java.util.*;
+
 public class code {
 	
-	char[] colors;
+	private char[] colors;
 
 	code() {
-		colors = {'','','',''};
+		colors = new char[4];
+		setColorAtIndex(0,'n');
+		setColorAtIndex(1,'n');
+		setColorAtIndex(2,'n');
+		setColorAtIndex(3,'n');
 	}
 
-	code(char[] colors) {
-		this.colors = new charcolors;
+	code(char[] c) {
+		colors = new char[4];
+		setColorAtIndex(0,c[0]);
+		setColorAtIndex(1,c[1]);
+		setColorAtIndex(2,c[2]);
+		setColorAtIndex(3,c[3]);
 	}
 
 	code(code c) {
-		this.colors = c.colors;
+		colors = new char[4];
+		setColorAtIndex(0,c.colors[0]);
+		setColorAtIndex(1,c.colors[1]);
+		setColorAtIndex(2,c.colors[2]);
+		setColorAtIndex(3,c.colors[3]);
 	}
 
 	public void setColorAtIndex(int i, char val) {
-		colors[i] = val;
+		this.colors[i] = val;
 	}
 
 	public char getColorAtIndex(int i) {
+		
 		return colors[i];
 	
 	}
-	
+
+	public char[] getColors() {
+		char[] returnColors = new char[4];
+		returnColors[0] = getColorAtIndex(0);
+		returnColors[1] = getColorAtIndex(1);
+		returnColors[2] = getColorAtIndex(2);
+		returnColors[3] = getColorAtIndex(3);
+		
+		return returnColors;
+	}
+
 	public int sameColor(code c) {
 		int count = 0;
 		boolean[] matched = {false,false,false,false};
@@ -54,14 +79,19 @@ public class code {
 		return count;
 	}
 
-	public boolean addColorToNextNullChar(char c) {
-		for (int i; i < colors.length; i++) {
-			if(colors[i] == '') 
+	public boolean append(char c) {
+		for (int i = 0; i < colors.length; i++) {
+			if(colors[i] == 'n') 
 			{
 				colors[i] = c;
-				return 0;
+				return false;
 			}
 		}
-		return 1;
+		return true;
 	}
+
+	public String toString() {
+		return "Code: " + colors[0] + colors[1] + colors[2] + colors[3] + " at address: " + colors;
+	}
+
 }

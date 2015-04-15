@@ -13,6 +13,15 @@ public class code {
 	code(code c) {
 		this.colors = c.colors;
 	}
+
+	public void setColorAtIndex(int i, char val) {
+		colors[i] = val;
+	}
+
+	public char getColorAtIndex(int i) {
+		return colors[i];
+	
+	}
 	
 	public int sameColor(code c) {
 		int count = 0;

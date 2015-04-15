@@ -3,11 +3,11 @@ public class code {
 	char[] colors;
 
 	code() {
-		colors = new char[4];
+		colors = {'','','',''};
 	}
 
 	code(char[] colors) {
-		this.colors = colors;
+		this.colors = new charcolors;
 	}
 
 	code(code c) {
@@ -52,5 +52,16 @@ public class code {
 		}
 
 		return count;
+	}
+
+	public boolean addColorToNextNullChar(char c) {
+		for (int i; i < colors.length; i++) {
+			if(colors[i] == '') 
+			{
+				colors[i] = c;
+				return 0;
+			}
+		}
+		return 1;
 	}
 }

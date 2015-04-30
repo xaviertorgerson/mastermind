@@ -22,6 +22,7 @@ public class mastermind extends JFrame implements MouseListener
     BufferedImage menuImage, winImage, loseImage;
 
 	boolean win = false;
+	boolean gameOver = false;
 
 	public static void main(String args[]) 
 	{
@@ -66,9 +67,6 @@ public class mastermind extends JFrame implements MouseListener
 
     	} catch (IOException e) {
     	}
-		
-	
-	
 	
 	}
 	
@@ -106,11 +104,14 @@ public class mastermind extends JFrame implements MouseListener
 		
 		g2d.setColor(Color.red);	
 		g2d.fill(new Rectangle2D.Double((4*60),((guessArray.length-1)*60)+22,60,60));
-
+		
+		g2d.setColor(Color.black);	
+		g2d.drawString("GO",(4*60)+22,((guessArray.length-1)*60)+57);
+		
 		if(turn == -2) {
 			g2d.drawImage(menuImage, 0, 0, null);
 		}
-		else if(turn == guessArray.length-2) {
+		else if(gameOver){
 			if(win) {
 				g2d.drawImage(winImage, 0, 0, null);
 			}
@@ -153,8 +154,9 @@ public class mastermind extends JFrame implements MouseListener
 				if(turn == -2){
 					turn++;
 				}
-				else if(turn == guessArray.length - 2){
+				else if(gameOver){
 					turn=-2;
+					gameOver = false;
 				}
 				else {
 				Rectangle2D rect = new Rectangle2D.Double((4*60),((guessArray.length-1)*60)+22,60,60);
@@ -183,9 +185,11 @@ public class mastermind extends JFrame implements MouseListener
 					char[] winCode = {'r','r','r','r'};
 					if(responseArray[turn].sameColorSamePosition(new code(winCode)) == 4) {
 						win = true;
+						gameOver = true;	
 					}
 					else if(turn >= guessArray.length - 2) {
 						win = false;
+						gameOver = true;
 					}
 
 				}
